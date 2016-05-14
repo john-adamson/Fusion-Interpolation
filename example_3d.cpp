@@ -53,5 +53,6 @@ int main()
                                   , 0.5
                                   , 0.5
                                   } };
+                                  
     cout << cell.interpolate(point) << endl;
 }
