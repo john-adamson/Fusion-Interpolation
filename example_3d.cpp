@@ -21,25 +21,12 @@
 // SOFTWARE.
  
 #include "fusion_interpolation.hpp"
- 
-#ifdef USE_GOOGLE_BENCHMARK
-#include "benchmark/benchmark.h"
- 
-#include <random>
- 
-using std::random_device;
-using std::mt19937;
-using std::uniform_real_distribution;
- 
-static void BM_RegularCellInterpolation(benchmark::State& state)
-#else
 #include <iostream>
  
 using std::cout;
 using std::endl;
  
 int main()
-#endif
 {
     using namespace fusion_interpolation;
    
@@ -62,30 +49,9 @@ int main()
        
     regular_cell<N> cell(limits, values);
    
-#ifdef USE_GOOGLE_BENCHMARK
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_real_distribution<> dis(0, 1);
-    const point_type<N> point = { { dis(gen)
-                                  , dis(gen)
-                                  , dis(gen)
+    const point_type<N> point = { { 0.5
+                                  , 0.5
+                                  , 0.5
                                   } };
-    while (state.KeepRunning())
-    {
-        cell.interpolate(point);
-    }
-#else
-        const point_type<N> point = { { 0.5
-                                      , 0.5
-                                      , 0.5
-                                      } };
-        cout << cell.interpolate(point) << endl;
-#endif
+    cout << cell.interpolate(point) << endl;
 }
- 
-#ifdef USE_GOOGLE_BENCHMARK
-// Register the function as a benchmark
-BENCHMARK(BM_RegularCellInterpolation);
- 
-BENCHMARK_MAIN();
-#endif
