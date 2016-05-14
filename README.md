@@ -20,9 +20,6 @@ Prerequisites
 Fusion Interpolation relies upon the
 [Armadillo C++ Linear Algebra Library](http://arma.sourceforge.net)
  
-The example uses [Google Benchmark](https://github.com/google/benchmark) if
-the user also defines `USE_GOOGLE_BENCHMARK`.
- 
  
 How it Works
 ------------
@@ -127,7 +124,7 @@ The order of the values must conform to the following pattern.  Dimensions 1 to
 Usage
 -----
  
-See `example_3d.cpp` for usage.
+See `example_3d.cpp` for usage.  `example_3d_benchmark.cpp` requires [Google Benchmark](https://github.com/google/benchmark).
  
  
 License
